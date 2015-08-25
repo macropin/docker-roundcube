@@ -23,4 +23,11 @@ export SMTP_PORT="${SMTP_PORT-$MAILSERVER_PORT_465_TCP_PORT}"
 
 export DES_KEY=$(genpasswd 24)
 
+if [ "$SSL_ENABLED" == "true" ]; then
+    a2enmod ssl
+    export SSL_KEY=${SSL_KEY-/etc/ssl/certs/ssl-cert-snakeoil.pem}
+    export SSL_CRT=${SSL_CRT-/etc/ssl/private/ssl-cert-snakeoil.key}
+    export SSL_CA=${SSL_CA-/etc/ssl/certs/ca-certificates.crt}
+fi
+
 exec $@

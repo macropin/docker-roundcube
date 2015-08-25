@@ -20,9 +20,16 @@ These are the base variables:
 - `DATABASE_HOST` - Optional: Database host, or use --link mariadb
 - `DATABASE_NAME` - Optional: Database Name. Default 'roundcube'.
 - `DEFAULT_HOST` - Optional: IMAP Host URL, or use --link mailserver (must expose port 993 imaps).
-- `DEFAULT_PORT` - Optional IMAP Port, or or use --link mailserver (must expose port 993 imaps).
-- `SMTP_SERVER` - Optional SMTP Host URL, or use --link mailserver (must expose port 465 smtps).
-- `SMTP_PORT` - Optional SMTP Port, or or use --link mailserver (must expose port 465 smtps).
+- `DEFAULT_PORT` - Optional: IMAP Port, or or use --link mailserver (must expose port 993 imaps).
+- `SMTP_SERVER` - Optional: SMTP Host URL, or use --link mailserver (must expose port 465 smtps).
+- `SMTP_PORT` - Optional: SMTP Port, or or use --link mailserver (must expose port 465 smtps).
+
+SSL Configuration:
+
+- `SSL_ENABLED` - Optional: Enable SSL
+- `SSL_KEY` - Optional: Path to SSL Key
+- `SSL_CRT` - Optional: Path to SSL Certificate
+- `SSL_CA` - Optional: Certificate Authority Chain
 
 ## Status
 
