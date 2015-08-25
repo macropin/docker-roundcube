@@ -8,7 +8,7 @@ ENV ROUNDCUBE_VERSION 1.1.2
 
 # Install Requirements
 RUN apt-get update && \
-    apt-get install -y apache2-mpm-prefork && \
+    apt-get install -y apache2-mpm-prefork ca-certificates && \
     apt-get install -y php5 php-pear php5-mysql php5-pgsql php5-sqlite php5-mcrypt php5-intl php5-ldap && \
     # Install Pear Requirements
     pear install mail_mime mail_mimedecode net_smtp net_idna2-beta auth_sasl net_sieve crypt_gpg && \
@@ -24,7 +24,7 @@ RUN rm /etc/apache2/conf-enabled/* /etc/apache2/sites-enabled/* && \
 # Install Code from Git
 RUN apt-get update && \
     apt-get install -y git && \
-    rm -rf /var/www/html/* &&\
+    rm -rf /var/www/html/* && \
     cd /var/www/html && git clone https://github.com/roundcube/roundcubemail.git . && \
     git checkout tags/$ROUNDCUBE_VERSION && rm -rf installer .git && \
     # Cleanup
@@ -34,6 +34,6 @@ RUN apt-get update && \
 RUN . /etc/apache2/envvars && chown -R ${APACHE_RUN_USER}:${APACHE_RUN_GROUP} /var/www/html/temp /var/www/html/logs
 COPY config.inc.php /var/www/html/config/config.inc.php
 
-ADD *.sh /
+ADD entry.sh /
 ENTRYPOINT ["/entry.sh"]
 CMD [ "/usr/sbin/apache2ctl", "-D", "FOREGROUND", "-k", "start" ]
