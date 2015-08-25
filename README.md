@@ -31,6 +31,14 @@ SSL Configuration:
 - `SSL_CRT` - Optional: Path to SSL Certificate
 - `SSL_CA` - Optional: Certificate Authority Chain
 
+Apache MPM Tuning:
+
+- `MPM_START` - Optional: Default '5'
+- `MPM_MINSPARE` - Optional: Default '5'
+- `MPM_MAXSPARE` - Optional: Default '10'
+- `MPM_MAXWORKERS` - Optional: Default '150'
+- `MPM_MAXCONNECTIONS` - Optional: Default '0'
+
 ## Status
 
 Production Ready.

@@ -30,4 +30,11 @@ if [ "$SSL_ENABLED" == "true" ]; then
     export SSL_CA=${SSL_CA-/etc/ssl/certs/ca-certificates.crt}
 fi
 
+# Apache MPM Tuning
+export MPM_START=${MPM_START-5}
+export MPM_MINSPARE=${MPM_MINSPARE-5}
+export MPM_MAXSPARE=${MPM_MAXSPARE-10}
+export MPM_MAXWORKERS=${MPM_MAXWORKERS-150}
+export MPM_MAXCONNECTIONS=${MPM_CONNECTIONS-0}
+
 exec $@

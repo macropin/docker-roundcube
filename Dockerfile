@@ -8,7 +8,7 @@ ENV ROUNDCUBE_VERSION 1.1.2
 
 # Install Requirements
 RUN apt-get update && \
-    apt-get install -y apache2-mpm-event ca-certificates && \
+    apt-get install -y apache2-mpm-prefork && \
     apt-get install -y php5 php-pear php5-mysql php5-pgsql php5-sqlite php5-mcrypt php5-intl php5-ldap && \
     # Install Pear Requirements
     pear install mail_mime mail_mimedecode net_smtp net_idna2-beta auth_sasl net_sieve crypt_gpg && \
@@ -17,8 +17,9 @@ RUN apt-get update && \
 
 # Host Configuration
 COPY apache2.conf /etc/apache2/apache2.conf
+COPY mpm_prefork.conf /etc/apache2/mods-available/
 RUN rm /etc/apache2/conf-enabled/* /etc/apache2/sites-enabled/* && \
-    a2enmod deflate rewrite expires headers php5
+    a2enmod mpm_prefork deflate rewrite expires headers php5
 
 # Install Code from Git
 RUN apt-get update && \
