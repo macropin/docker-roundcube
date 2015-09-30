@@ -4,10 +4,12 @@ MAINTAINER Andrew Cutler <macropin@gmail.com>
 
 EXPOSE 80 443
 
-ENV ROUNDCUBE_VERSION 1.1.2
+ENV ROUNDCUBE_VERSION 1.1.3
 
-# Install Requirements
 RUN apt-get update && \
+    # Nice to have
+    apt-get install -y vim && \
+    # Install Requirements
     apt-get install -y apache2-mpm-prefork ca-certificates && \
     apt-get install -y php5 php-pear php5-mysql php5-pgsql php5-sqlite php5-mcrypt php5-intl php5-ldap && \
     # Install Pear Requirements
