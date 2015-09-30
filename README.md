@@ -43,6 +43,11 @@ Apache MPM Tuning:
 - `MPM_MAXWORKERS` - Optional: Default '150'
 - `MPM_MAXCONNECTIONS` - Optional: Default '0'
 
+## TODO
+
+- Add support for bootstrapping the initial database schema. Currently this must be done manually.
+- Add support for handling database schema upgrades. Currently this must be done manually.
+
 ## Status
 
 Production Stable.
