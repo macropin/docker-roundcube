@@ -28,7 +28,7 @@ $config['db_dsnw'] = getenv('DB_DSNW');
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
 
-$config['default_host'] = getenv('DEFAULT_HOST');
+$config['default_host'] = explode(' ', getenv('DEFAULT_HOST'));
 
 // TCP port used for IMAP connections
 $config['default_port'] = getenv('DEFAULT_PORT');
