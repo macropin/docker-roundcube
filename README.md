@@ -45,7 +45,6 @@ Apache MPM Tuning:
 
 ## TODO
 
-- Add support for bootstrapping the initial database schema. Currently this must be done manually.
 - Add support for handling database schema upgrades. Currently this must be done manually.
 
 ## Status

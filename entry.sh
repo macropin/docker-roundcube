@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
+
+[ "$DEBUG" == 'true' ] && set -x
 
 genpasswd() {
     export LC_CTYPE=C  # Quiet tr warnings
@@ -9,9 +11,12 @@ genpasswd() {
     cat /dev/urandom | tr -dc A-Za-z0-9_ | head -c ${l}
 }
 
+export DATABASE_HOST=${DATABASE_HOST:-$MARIADB_PORT_3306_TCP_ADDR}
+export DATABASE_NAME=${DATABASE_NAME:-roundcube}
+export DATABASE_USER=${DATABASE_USER:-roundcube}
 
 # MySQL Service
-export DB_DSNW="mysql://${DATABASE_USER:-roundcube}:${DATABASE_PASS}@${DATABASE_HOST:-$MARIADB_PORT_3306_TCP_ADDR}/${DATABASE_NAME:-roundcube}"
+export DB_DSNW="mysql://${DATABASE_USER}:${DATABASE_PASS}@${DATABASE_HOST}/${DATABASE_NAME}"
 
 # IMAP Service
 export DEFAULT_HOST="${DEFAULT_HOST-ssl://${MAILSERVER_PORT_993_TCP_ADDR}:$MAILSERVER_PORT_993_TCP_PORT}"
@@ -36,5 +41,7 @@ export MPM_MINSPARE=${MPM_MINSPARE:-5}
 export MPM_MAXSPARE=${MPM_MAXSPARE:-10}
 export MPM_MAXWORKERS=${MPM_MAXWORKERS:-150}
 export MPM_MAXCONNECTIONS=${MPM_CONNECTIONS:-0}
+
+php /bootstrap.php
 
 exec $@

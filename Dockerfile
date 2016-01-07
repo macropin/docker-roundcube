@@ -36,6 +36,9 @@ RUN apt-get update && \
 RUN . /etc/apache2/envvars && chown -R ${APACHE_RUN_USER}:${APACHE_RUN_GROUP} /var/www/html/temp /var/www/html/logs
 COPY config.inc.php /var/www/html/config/config.inc.php
 
+# Add bootstrap tool
+ADD bootstrap.php /
+
 ADD entry.sh /
 ENTRYPOINT ["/entry.sh"]
 CMD [ "/usr/sbin/apache2ctl", "-D", "FOREGROUND", "-k", "start" ]
