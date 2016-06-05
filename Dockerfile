@@ -4,7 +4,7 @@ MAINTAINER Andrew Cutler <macropin@gmail.com>
 
 EXPOSE 80 443
 
-ENV ROUNDCUBE_VERSION 1.1.5
+ENV ROUNDCUBE_VERSION 1.2.0
 
 RUN apt-get update && \
     # Nice to have
