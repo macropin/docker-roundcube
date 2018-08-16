@@ -1,6 +1,5 @@
 # Roundcube Docker
 
-[![Docker Repository on Quay.io](https://quay.io/repository/macropin/roundcube/status "Docker Repository on Quay.io")](https://quay.io/repository/macropin/roundcube)
 [![](https://badge.imagelayers.io/macropin/roundcube:latest.svg)](https://imagelayers.io/?images=macropin/roundcube:latest)
 
 Production ready Docker container for [Roundcube](https://github.com/roundcube/roundcubemail).
