@@ -1,17 +1,17 @@
-FROM debian:jessie
+FROM debian:stretch
 
 MAINTAINER Andrew Cutler <macropin@gmail.com>
 
 EXPOSE 80 443
 
-ENV ROUNDCUBE_VERSION 1.2.7
+ENV ROUNDCUBE_VERSION 1.3.8
 
 RUN apt-get update && \
     # Nice to have
     apt-get install -y vim && \
     # Install Requirements
-    apt-get install -y apache2-mpm-prefork ca-certificates && \
-    apt-get install -y php5 php-pear php5-mysql php5-pgsql php5-sqlite php5-mcrypt php5-intl php5-ldap && \
+    apt-get install -y apache2 ca-certificates && \
+    apt-get install -y php7.0 php-pear php7.0-mysql php7.0-pgsql php7.0-sqlite php7.0-mcrypt php7.0-intl php7.0-ldap && \
     # Install Pear Requirements
     pear install mail_mime mail_mimedecode net_smtp net_idna2-beta auth_sasl net_sieve crypt_gpg && \
     # Cleanup
@@ -21,7 +21,7 @@ RUN apt-get update && \
 COPY apache2.conf /etc/apache2/apache2.conf
 COPY mpm_prefork.conf /etc/apache2/mods-available/
 RUN rm /etc/apache2/conf-enabled/* /etc/apache2/sites-enabled/* && \
-    a2enmod mpm_prefork deflate rewrite expires headers php5
+    a2enmod mpm_prefork deflate rewrite expires headers php7.0
 
 # Install Code from Git
 RUN apt-get update && \
